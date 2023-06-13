@@ -1,0 +1,53 @@
+{% extends 'registration/registration_base.html' %}
+{% block title %}Registration{% endblock %}
+
+
+{% block content %}     
+{% load static %}
+<div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 left-panel">
+  <div class="slogan"><h1>Unleash Your Ideas, Organize Your Thoughts with KeepNote!</h1></div>
+  <div class="form-container">
+    <p>Keep's Registration</p>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+      </div>
+      <div class="form-group">
+        {{ form.password.label_tag }}
+        {{ form.password }}
+      </div>
+      <div class="form-group">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+      </div>
+      <div class="form-group">
+        <label for="image" class="custom-file-label">
+          Choose Profile Image
+        </label>
+        <input type="file" name="image" id="image" accept="image/*" class="custom-file-input">
+        {% if form.image.errors %}
+          <p class="error">{{ form.image.errors }}</p>
+        {% endif %}
+      </div>
+      <div class="d-flex align-items-center">
+        <button type="submit">Register</button>
+        <a class="p-1" href="{% url 'login' %}">Already have an account?</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
+      var fileName = e.target.files[0].name;
+      document.querySelector('.custom-file-label').textContent = fileName;
+    });
+  });
+</script>
+{% endblock %}

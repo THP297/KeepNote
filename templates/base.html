@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} {% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    
+
+</head>
+
+<body>
+    {% block selectedNavbar %}
+    {% endblock %}
+
+    <div class="container-fluid">
+        <div class="row menu">
+          <div class="row menu__container">
+              <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 col-12">
+                <h2 style="font-style: italic; color: grey;"><img src="{% static 'images/KeepLogo.png' %}" alt="" style="width: 50px;">{{user.username}}</h2>
+              </div>
+              <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12 col-12 menu__container-features">
+                <form class="search-form" method="get">
+                  <button id="search" type="submit" data-tooltip="Tìm kiếm">Go</button>
+                  <input type="text" placeholder="Search" id="my-search" name="q" value="{{ query }}">
+                  <button type="button" class="clear-input" data-tooltip="Xóa tìm kiếm">X</button>
+                </form>
+                <div>
+                  <button id="refresh-btn" data-tooltip="Làm mới"><i class="bi bi-arrow-clockwise"></i></button>
+                  <button data-tooltip="Chế độ danh sách"><i class="bi bi-view-list"></i></button>
+                  <button data-tooltip="Cài đặt"><i class="bi bi-gear"></i></button>
+
+                  <button data-tooltip="{{ user.username }}">
+                    <img id="user_avatar" src="{% if user.is_social %}{{ user.avatar_url }}{% else %}../../media/{{ user.avatar_url }} {% endif %}" alt="#avatar">
+                  </button>
+                  
+                  <a href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i></a>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-12 col-12 p-0">
+              <div class="row sidebar">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-4 col-4 parent">
+                  <i class="bi bi-bell"></i>
+                  <a href="{% url 'home' %}">Ghi chú</a>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-4 col-4 parent">
+                  <i class="bi bi-box-arrow-down"></i>
+                  <a href="{% url 'store' %}">Lưu trữ</a>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-4 col-4 parent">
+                  <i class="bi bi-trash"></i>
+                  <a href="{% url 'garbage' %}">Thùng rác</a>
+                </div>
+              </div>
+            </div>
+            <div class="col p-0">
+                <div class="container-fluid note__container">
+                    {% if not query %} 
+                    <div class="row add__note-container">
+                        <form class="note-form" method="POST" enctype="multipart/form-data" class="w-50 mx-auto">
+                            {% csrf_token %}
+                            <div class="note-content">
+                                <div class="note-content-images">
+                                </div>
+                                {{ form.title }}
+                                {{ form.content }}
+                                <div class="add_images_button">
+                                  <label for="id_image" class="btn btn-secondary btn-icon custom-file-upload"><i class="bi bi-image"></i></label>
+                                  <input type="file" name="images" multiple id="id_image" class="d-none" />
+                                </div>
+                                <div class="features">
+                                  <div class="form-navbar">
+                                    <button type="button" data-tooltip="Thông báo"><i class="bi bi-bell"></i></button>
+                                    <button type="button" data-tooltip="Chọn màu nền"><i class="bi bi-palette"></i></button>
+                                      <label for="id_image" class="btn btn-secondary btn-icon custom-file-upload" data-tooltip="Thêm ảnh"><i class="bi bi-image"></i></label>
+                                      <input type="file" name="images" multiple id="id_image" class="d-none" />
+                                    <button data-tooltip="Lưu trữ" type="button" id="store-btn"><i class="bi bi-box-arrow-down"></i></button>
+                                  </div>
+                                  <div class="w-25"><input type="submit" value="Thêm" class="btn btn-primary custom-submit"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {% endif %}
+                    <div class="row notes">
+                        <div id="notes-container">
+                            {% for note in notes %}
+                            <div class="note" value="{{ note.id }}" backgroundColor="{{note.background_color}}">
+                                <div class="selected" value="false">
+                                  <button class="selected-btn"><i class="bi bi-check2"></i></button>
+                                </div>
+                                {% if note.images.all %}
+                                <div class="note-images">
+                                    <div class="note-image-container">
+                                      {% for image in note.images.all %}
+                                            <img src="{{ image.image.url }}" alt="{{ note.title }} Image" class="note-image p-1" value="{{ image.id }}">
+                                      {% endfor %}
+                                    </div>
+                                  </div>
+                                {% endif %}
+                                <div class="note-info">
+                                  <h5>{{ note.title }}</h5>
+                                  <p>{{ note.content }}</p>
+                                </div>
+                                <div class="note-navbar">
+                                  <button data-tooltip="Thông báo"><i class="bi bi-bell"></i></button>
+                                  <div class="color">
+                                    <button data-tooltip="Chọn màu nền"><i class="bi bi-palette"></i></button>
+                                    <div class="palette">
+                                      <button class="color-1" value="rgb(255,255,255)">X</button>
+                                      <button class="color-2" value="rgb(242, 140, 140)"></button>
+                                      <button class="color-3" value="rgb(248, 175, 66)"></button>
+                                      <button class="color-4" value="rgb(230, 241, 18)"></button>
+                                      <button class="color-5" value="rgb(166, 255, 0)"></button>
+                                      <button class="color-6" value="rgb(0, 255, 229)"></button>
+                                      <button class="color-7" value="rgb(191, 107, 239)"></button>
+                                      <button class="color-8" value="rgb(240, 123, 244)"></button>
+                                      <button class="color-9" value="rgb(238, 124, 164)"></button>
+                                    </div>
+                                  </div>
+                                  <label for="note__id_image" class="btn btn-secondary btn-icon custom-file-upload" data-tooltip="Thêm ảnh"><i class="bi bi-image"></i></label>
+                                  <input type="file" name="images" multiple id="note__id_image" class="d-none" />
+    
+                                  <form method="POST" action="{% url 'store' %}" data-tooltip="Lưu trữ">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="note_id" value="{{ note.id }}" >
+                                    <button type="submit"><i class="bi bi-box-arrow-down"></i></button>
+                                    <input type="hidden" name="current_url" class="current_url">
+                                  </form>
+                                  
+                                  <form method="POST" action="{% url 'garbage' %}" data-tooltip="Xóa">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="note_id" value="{{ note.id }}" >
+                                    <input type="hidden" name="current_url" class="current_url">
+                                    <button type="submit"><i class="bi bi-trash"></i></button>
+                                  </form>
+                                </div>
+                              </div>
+                            {% empty %}
+                                <p id="noNote">No notes yet.</p>
+                            {% endfor %}
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block announce_panel %}
+    {% endblock %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="module" src="{% static 'js/script.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+</body>
+
+</html>

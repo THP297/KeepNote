@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}MyKeep{% endblock %}
+
+{% if user.is_authenticated %}
+
+{% block selectedNavbar %}     
+
+<div class="selectedNotes-navbar" id="removeNotes-navbar">
+  <div>
+    <div><button class="turnOff">X</button></div>
+    <div><h3><span>1</span> ghi chú được chọn</h3></div>
+  </div>
+  <div>
+    <div class="color">
+      <button data-tooltip="Chọn màu nền"><i class="bi bi-palette"></i></button>
+      <div class="palette">
+        <button class="color-1" value="rgb(255,255,255)">X</button>
+        <button class="color-2" value="rgb(242, 140, 140)"></button>
+        <button class="color-3" value="rgb(248, 175, 66)"></button>
+        <button class="color-4" value="rgb(230, 241, 18)"></button>
+        <button class="color-5" value="rgb(166, 255, 0)"></button>
+        <button class="color-6" value="rgb(0, 255, 229)"></button>
+        <button class="color-7" value="rgb(191, 107, 239)"></button>
+        <button class="color-8" value="rgb(240, 123, 244)"></button>
+        <button class="color-9" value="rgb(238, 124, 164)"></button>
+      </div>
+    </div>
+    <button class="selectedNotes-recoverBtn" data-tooltip="Khôi phục"><i class="bi bi-arrow-counterclockwise"></i></i></button>
+    <button class="selectedNotes-deleteBtn" data-tooltip="Xóa"><i class="bi bi-trash"></i></button>
+  </div>
+</div>
+{% endblock %} 
+
+
+{% block announce_panel %} 
+
+<div class="announce_panel" id="removed">
+  <p>Đã khôi phục ghi chú</p>
+  <button>X</button>
+</div>
+
+
+<div class="announce_panel" id="notes_deleted">
+  <p>Đã xóa <span></span> ghi chú</p>
+  <button>X</button>
+</div>
+
+<div class="announce_panel" id="notes_recovered">
+  <p>Đã khôi phục <span></span> ghi chú</p>
+  <button>X</button>
+</div>
+
+<div class="announce_panel" id="delete">
+  <p>Đã xóa ghi chú</p>
+  <button>X</button>
+</div>
+{% endblock %} 
+
+{% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Log in</a>
+{% endif %}
+
