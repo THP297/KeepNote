@@ -5,7 +5,7 @@ from .models import Author
 
 
 class NoteAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'author','stored','background_color']
+    list_display = ['id', 'title', 'author','stored','background_color','created_at']
 
 class NoteImageAdmin(admin.ModelAdmin):
     list_display = ['note','image']

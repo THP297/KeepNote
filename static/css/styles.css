@@ -166,8 +166,8 @@ label[for=id_image] i {
 }
 .menu__container-features .search-form input[type=text] {
   padding: 10px;
-  width: 90%;
   border: none;
+  width: 100%;
 }
 .menu__container-features .search-form input[type=text]:focus {
   outline: none;
@@ -180,6 +180,10 @@ label[for=id_image] i {
 }
 .menu__container-features #search:focus, .menu__container-features #search:hover {
   background-color: #d5d5d5;
+}
+.menu__container-features div:nth-child(1) {
+  display: flex;
+  width: 90%;
 }
 .menu__container-features div:nth-child(2) {
   width: 20%;

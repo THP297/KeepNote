@@ -188,8 +188,8 @@ label[for=id_image] {
 
     .search-form input[type="text"] {
       padding: 10px;
-      width: 90%;
       border: none;
+      width: 100%;
       &:focus{
         outline: none;
       }
@@ -206,6 +206,10 @@ label[for=id_image] {
       }
     }
 
+    & div:nth-child(1){
+      display: flex;
+      width: 90%;
+    }
     & div:nth-child(2){
       width: 20%;
       display: flex;

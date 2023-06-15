@@ -26,16 +26,17 @@
                 <h2 style="font-style: italic; color: grey;"><img src="{% static 'images/KeepLogo.png' %}" alt="" style="width: 50px;">{{user.username}}</h2>
               </div>
               <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12 col-12 menu__container-features">
-                <form class="search-form" method="get">
-                  <button id="search" type="submit" data-tooltip="Tìm kiếm">Go</button>
-                  <input type="text" placeholder="Search" id="my-search" name="q" value="{{ query }}">
+                <div>
+                  <form class="search-form" method="get">
+                    <button id="search" type="submit" data-tooltip="Tìm kiếm">Go</button>
+                    <input type="text" placeholder="Search" id="my-search" name="q" value="{{ query }}">
+                  </form>
                   <button type="button" class="clear-input" data-tooltip="Xóa tìm kiếm">X</button>
-                </form>
+                </div>
                 <div>
                   <button id="refresh-btn" data-tooltip="Làm mới"><i class="bi bi-arrow-clockwise"></i></button>
                   <button data-tooltip="Chế độ danh sách"><i class="bi bi-view-list"></i></button>
                   <button data-tooltip="Cài đặt"><i class="bi bi-gear"></i></button>
-
                   <button data-tooltip="{{ user.username }}">
                     <img id="user_avatar" src="{% if user.is_social %}{{ user.avatar_url }}{% else %}../../media/{{ user.avatar_url }} {% endif %}" alt="#avatar">
                   </button>
