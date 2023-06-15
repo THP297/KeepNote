@@ -112,39 +112,10 @@
                                   <h5>{{ note.title }}</h5>
                                   <p>{{ note.content }}</p>
                                 </div>
-                                <div class="note-navbar">
-                                  <button data-tooltip="Thông báo"><i class="bi bi-bell"></i></button>
-                                  <div class="color">
-                                    <button data-tooltip="Chọn màu nền"><i class="bi bi-palette"></i></button>
-                                    <div class="palette">
-                                      <button class="color-1" value="rgb(255,255,255)">X</button>
-                                      <button class="color-2" value="rgb(242, 140, 140)"></button>
-                                      <button class="color-3" value="rgb(248, 175, 66)"></button>
-                                      <button class="color-4" value="rgb(230, 241, 18)"></button>
-                                      <button class="color-5" value="rgb(166, 255, 0)"></button>
-                                      <button class="color-6" value="rgb(0, 255, 229)"></button>
-                                      <button class="color-7" value="rgb(191, 107, 239)"></button>
-                                      <button class="color-8" value="rgb(240, 123, 244)"></button>
-                                      <button class="color-9" value="rgb(238, 124, 164)"></button>
-                                    </div>
-                                  </div>
-                                  <label for="note__id_image" class="btn btn-secondary btn-icon custom-file-upload" data-tooltip="Thêm ảnh"><i class="bi bi-image"></i></label>
-                                  <input type="file" name="images" multiple id="note__id_image" class="d-none" />
-    
-                                  <form method="POST" action="{% url 'store' %}" data-tooltip="Lưu trữ">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="note_id" value="{{ note.id }}" >
-                                    <button type="submit"><i class="bi bi-box-arrow-down"></i></button>
-                                    <input type="hidden" name="current_url" class="current_url">
-                                  </form>
-                                  
-                                  <form method="POST" action="{% url 'garbage' %}" data-tooltip="Xóa">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="note_id" value="{{ note.id }}" >
-                                    <input type="hidden" name="current_url" class="current_url">
-                                    <button type="submit"><i class="bi bi-trash"></i></button>
-                                  </form>
-                                </div>
+
+                                {% block note-navbar %}
+                                {% endblock %}
+                                
                               </div>
                             {% empty %}
                                 <p id="noNote">No notes yet.</p>

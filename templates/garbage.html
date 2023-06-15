@@ -30,6 +30,18 @@
   </div>
 </div>
 {% endblock %} 
+{% block note-navbar %} 
+<div class="note-navbar">
+  <form method="POST" action="{% url 'garbage' %}" data-tooltip="Khôi phục">
+    {% csrf_token %}
+    <input type="hidden" name="note_id" value="{{ note.id }}" >
+    <input type="hidden" name="current_url" class="current_url">
+    <button type="submit"><i class="bi bi-arrow-counterclockwise"></i></button>
+  </form>
+</form>
+<button name="only" id="delete-note" data-note-id="{{ note.id }}" type="button"><i class="bi bi-trash"></i></button>
+</div>
+{% endblock %}
 
 
 {% block announce_panel %} 
