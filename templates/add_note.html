@@ -29,7 +29,38 @@
     <button class="selectedNotes-removeBtn" data-tooltip="Xóa"><i class="bi bi-trash"></i></button>
   </div>
 </div>
-{% endblock %}     
+{% endblock %}    
+
+{% block form-navbar %} 
+{% if not query %} 
+<div class="row add__note-container">
+    <form class="note-form" method="POST" enctype="multipart/form-data" class="w-50 mx-auto">
+        {% csrf_token %}
+        <div class="note-content">
+            <div class="note-content-images">
+            </div>
+            {{ form.title }}
+            {{ form.content }}
+            <div class="add_images_button">
+              <label for="id_image" class="btn btn-secondary btn-icon custom-file-upload"><i class="bi bi-image"></i></label>
+              <input type="file" name="images" multiple id="id_image" class="d-none" />
+            </div>
+            <div class="features">
+              <div class="form-navbar">
+                <button type="button" data-tooltip="Thông báo"><i class="bi bi-bell"></i></button>
+                <button type="button" data-tooltip="Chọn màu nền"><i class="bi bi-palette"></i></button>
+                  <label for="id_image" class="btn btn-secondary btn-icon custom-file-upload" data-tooltip="Thêm ảnh"><i class="bi bi-image"></i></label>
+                  <input type="file" name="images" multiple id="id_image" class="d-none" />
+                <button data-tooltip="Lưu trữ" type="button" id="store-btn"><i class="bi bi-box-arrow-down"></i></button>
+              </div>
+              <div class="w-25"><input type="submit" value="Thêm" class="btn btn-primary custom-submit"></div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endif %}
+{% endblock %}
+
 {% block note-navbar %} 
 <div class="note-navbar">
   <button data-tooltip="Thông báo"><i class="bi bi-bell"></i></button>
