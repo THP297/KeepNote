@@ -4,7 +4,11 @@
       {
         "src": "mykeep/wsgi.py",
         "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" },
+        "functions": {
+          "preBuild": { "command": "pip install -r requirements.txt" },
+          "postBuild": { "command": "python manage.py collectstatic --noinput" }
+        }
       }
     ],
     "routes": [
@@ -19,19 +23,6 @@
     ],
     "env": {
       "DJANGO_SETTINGS_MODULE": "mykeep.settings"
-    },
-    "build": {
-      "env": {
-        "PYTHONUSERBASE": "./.python"
-      },
-      "functions": {
-        "preBuild": {
-          "command": "pip install -r requirements.txt"
-        },
-        "postBuild": {
-          "command": "python manage.py collectstatic --noinput"
-        }
-      }
     }
   }
   
