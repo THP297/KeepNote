@@ -158,6 +158,9 @@ label[for=id_image] i {
   align-items: center;
   justify-content: space-between;
 }
+.menu__container-features .clear-input {
+  border: none;
+}
 .menu__container-features .search-form {
   display: flex;
   align-items: center;
