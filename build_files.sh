@@ -1,7 +1,11 @@
-python3.9 pipenv shell
-python3.9 -m pipenv install -r requirements.txt
+#!/bin/bash
+# Install Pipenv
+pip install pipenv
 
-python3.9 manage.py makemigrations --noinput
-python3.9 manage.py makemirations --noinput
+# Activate virtual environment
+pipenv install --dev
 
-python3.9 manage.py collectstatic --noinput --clear
+# Run build commands
+pipenv run python manage.py makemigrations --noinput
+pipenv run python manage.py migrate --noinput
+pipenv run python manage.py collectstatic --noinput --clear
