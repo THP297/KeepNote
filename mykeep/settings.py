@@ -101,6 +101,11 @@ DATABASES = {
 }
 
 
+CORS_ORIGIN_WHITELIST = [
+    # Other trusted origins
+    'https://keepnote-production.up.railway.app',
+]
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
