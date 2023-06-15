@@ -101,7 +101,7 @@ DATABASES = {
 }
 
 
-CORS_ORIGIN_WHITELIST = [
+CORS_ALLOWED_ORIGINS = [
     # Other trusted origins
     'https://keepnote-production.up.railway.app',
 ]
