@@ -1,0 +1,725 @@
+$text-color: black;
+
+body{
+  min-height: 100vh;
+}
+
+//------------------------------------------SIDEBAR----------------------------------------------
+.sidebar{
+  height: auto;
+  .parent{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 30px;
+    display: flex;
+
+    i,a{
+      @media (max-width:992px) {
+        font-size: 2vw;
+      }
+      @media (max-width:576px) {
+        font-size: 3vw;
+      }
+      margin: 20px;
+      font-size: 1.3vw;
+    }
+
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  .highlighted {
+    background-color: greenyellow;
+    border-radius: 30px;
+  }
+  
+  i{
+    width: 1%;
+  }
+  a{
+    text-decoration: none;
+    color: black;
+    display: block;
+    width: 95%;
+  }
+
+  
+}
+
+// -------------------------------------FORM------------------------------------
+*{
+  box-sizing: border-box;
+}
+.note-form{
+  display: flex;
+  justify-content: center;
+}
+.note-content {
+  position: relative;
+  border-radius: 10px;
+  width: 50%;
+  &-images{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    div{
+      &:hover{
+        button{
+          display: block;
+        }
+      }
+      button{
+        position: absolute;
+        display: none;
+        top:5px;
+        left:5px;
+        border: none;
+        background-color: rgb(181, 179, 179, 0.4);
+        border-radius: 5px;
+        &:hover{
+          background-color: rgba(115, 113, 113, 0.4);
+
+        }
+      }
+    }
+  }
+  
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  .add_images_button{
+    position: absolute;
+    right: 20px; 
+    top: 15px;
+  }
+
+  textarea{
+    overflow: hidden;
+    word-wrap: break-word;
+    border: none;
+    line-height: 15px;
+    padding-top: 15px;
+    border-radius: 10px;
+  }
+
+  textarea:focus,
+  input:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  .features{
+    display: flex;
+    justify-content: space-between;
+    input{
+      float: right;
+    }
+    .form-navbar{
+      width: 75%;
+      display: flex;
+      justify-content: space-around;
+
+      button:hover{
+        background-color: rgb(181, 179, 179, 0.4);
+        border-radius: 5px;
+      }
+      button:hover::after,label:hover::after{
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: -15px;
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: hidden;
+        color: white;
+        background-color: grey;
+      }
+    }
+  }
+
+}
+
+label[for=id_image] {
+  background-color: transparent;
+  border: none;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+  }
+
+  i {
+    color: gray;
+  }
+}
+
+.custom-submit {
+  background-color: transparent;
+  border: none;
+  color: $text-color;
+
+  &:hover{
+      background-color: transparent;
+      color: $text-color;
+  }
+}
+
+// ---------------------------------------------MENU-------------------------------------------------
+.menu{
+  border-bottom: 1px solid rgb(191, 189, 189);
+  margin-bottom: 40px;
+
+}
+.menu__container{
+  margin-bottom: 10px;
+
+
+  &-features{
+    display: flex;
+    align-items: center ;
+    justify-content: space-between;
+    
+    .clear-input{
+      border: none;
+    }
+
+    .search-form {
+      display: flex;
+      align-items: center;
+      width: 60%;
+      border-radius: 10px;
+    }
+
+    .search-form input[type="text"] {
+      padding: 10px;
+      border: none;
+      width: 100%;
+      &:focus{
+        outline: none;
+      }
+    }
+    
+    #search{
+      padding: 10px;
+      border: none;
+
+      border-radius: 10px 0 0 10px;
+      background-color: #f2f2f2;
+      &:focus, &:hover{
+        background-color: #d5d5d5;
+      }
+    }
+
+    & div:nth-child(1){
+      display: flex;
+      width: 90%;
+    }
+    & div:nth-child(2){
+      width: 20%;
+      display: flex;
+      justify-content: space-between;
+      button,a{
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        outline: none;
+        border: none;
+        i{
+          font-size: 100%;
+        }
+        img{
+          width: 40px;
+          border: 1px solid gray;
+          border-radius: 50%;
+        }
+      }
+    }
+    
+    button:hover::after{
+      content: attr(data-tooltip);
+      position: absolute;
+      top: 35px;
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      color: white;
+      background-color: grey;
+    }
+  }
+}
+// ------------------------------------------NOTES-------------------------------------------
+.form-clone-container{  
+  background-color: rgba(90, 89, 89, 0.6);
+  top:0;
+  width: 100%;
+  height: 100%; 
+  position: absolute;
+  display: flex;
+  justify-content: center;
+
+  .form-clone{
+    width: 30%;
+    background-color: #d5d5d5;
+    border: 5px solid #d5d5d5;
+    height: fit-content;
+    
+    .image-container{
+      &:hover{
+        button{
+          display: block;
+        }
+      }
+      button{
+        position: absolute;
+        display: none;
+        top:5px;
+        left:5px;
+        border: none;
+        background-color: rgb(181, 179, 179, 0.4);
+        border-radius: 5px;
+        &:hover{
+          background-color: rgba(115, 113, 113, 0.4);
+        }
+      }
+    }
+
+    .form-clone-content{
+      position: relative;
+      border-radius: 10px;
+      background-color: white;
+      height: auto;
+      &-images{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+      
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+
+      .form-title{
+        font-weight: bold;
+      }
+      .form-textarea{
+        border: none;
+        padding-top: 15px;
+        border-radius: 10px;
+        color:green;
+        height: 250px;
+      }
+
+      .form-textarea::-webkit-scrollbar {
+        width: 5px;
+        &:hover{
+          cursor: pointer;
+        }
+      }
+      
+      .form-textarea::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      
+      .form-textarea::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 6px;
+      }
+      
+      .form-textarea::-webkit-scrollbar-thumb:hover {
+        background-color: #555;
+      }
+
+      .form-title{
+        border:none;
+      }
+      
+      textarea:focus,
+      input:focus {
+        outline: none;
+        box-shadow: none;
+      }
+      .clone-features{
+        display: flex;
+        justify-content: space-between;
+        input{
+          float: right;
+        }
+
+        .close-div{
+          button{
+            border: none;
+            &:hover{
+              background-color: rgb(181, 179, 179, 0.4);
+              border-radius: 5px;
+            }
+            &:hover::after{
+              content: attr(data-tooltip);
+              position: absolute;
+              bottom: -15px;
+              font-size: 13px;
+              white-space: nowrap;
+              overflow: hidden;
+              color: white;
+              background-color: grey;
+            }
+          }
+        }
+        .form-navbar{
+          width: 75%;
+          display: flex;
+          justify-content: space-around;
+
+          button, label{
+            border: none;
+          }
+
+          button:hover{
+            background-color: rgb(181, 179, 179, 0.4);
+            border-radius: 5px;
+          }
+          button:hover::after,label:hover::after{
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -15px;
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            color: white;
+            background-color: grey;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.notes{
+  #notes-container{
+    margin-bottom: 10px;
+    .note{
+      &:hover{
+        box-shadow: 2px 2px 5px 5px rgb(181, 179, 179, 0.7);
+      }
+      @media screen and (max-width: 1200px) {
+        width: 20%;
+      }
+      @media screen and (max-width: 576px) {
+        width: 40%;
+      }
+      
+      width: 15%;
+      border: 1px solid rgb(181, 179, 179);
+      margin: 10px;
+      box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+      transition: all 0.3s ease-in-out;
+
+      .selected{
+        display: none;
+        position: absolute;
+        left: -7px;
+        top: -7px;
+
+        button{
+          font-size: 10px;
+          border-radius: 7px;
+        }
+      }
+
+      .note-images{
+        max-height: 150px;
+        overflow-y: hidden;
+      }
+      
+      .note-image-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 100%;
+        }
+        .note-info{
+          margin-bottom: 35px;
+          padding:15px 5px 5px 15px;
+          p,h5{
+            word-wrap: break-word;
+          }
+        }
+        .note-navbar{
+          display: none;
+          align-items: center;
+          justify-content: space-around;
+          width: 100%;
+          padding-left: 5px;
+
+          .color{
+            display: inline-flex;
+            position: relative;
+          }
+          .palette{
+            width: 200px;
+            top: 50px;
+            left: -50px;
+            display: none;
+            padding: 10px;
+            height: auto;
+            position: absolute;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+            @mixin palette-button-styles(){
+              border-radius: 50%;
+              width: 30px;
+              height: 30px;
+              margin: 0px 2px 0px 2px;
+              padding: 1px;
+            }
+            button{
+              @include palette-button-styles();
+
+              &:hover{
+                border: 1px solid black !important;
+                @include palette-button-styles();
+              }
+            }
+            & button:nth-child(1){
+              background-color: rgb(255,255,255);
+            }
+            & button:nth-child(2){
+              background-color: rgb(242, 140, 140);
+            }
+            & button:nth-child(3){
+              background-color: rgb(248, 175, 66);
+            }
+            & button:nth-child(4){
+              background-color: rgb(230, 241, 18);
+            }
+            & button:nth-child(5){
+              background-color: rgb(166, 255, 0);
+            }
+            & button:nth-child(6){
+              background-color: rgb(0, 255, 229);
+            }
+            & button:nth-child(7){
+              background-color: rgb(191, 107, 239);
+            }
+            & button:nth-child(8){
+              background-color: rgb(240, 123, 244);
+            }
+            & button:nth-child(9){
+              background-color: rgb(238, 124, 164);
+            }
+          }
+
+          label{
+            background-color: transparent;
+            border: none;
+            display: inline-block;
+            &:hover {
+              background-color: rgb(181, 179, 179, 0.4);
+              transition: all 0.2s ease-in-out;
+            }
+          
+            i {
+              color:black;
+              display: inline-block;
+              width: 100%; /* Adjust this value as needed */
+              box-sizing: border-box;
+              text-align: center;
+            }
+          }
+          form{
+            display: flex;
+          }
+
+          button {
+            i {
+              color: black;
+              display: block;
+              width: 100%;
+              height: 100%;
+            }
+          }
+          button,form {
+            border: none;
+            background: none;
+          }
+          button:hover{
+              background-color: rgb(181, 179, 179, 0.4);
+              border-radius: 5px;
+          }
+          button:hover::after, form:hover::after,label:hover::after{
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -25px;
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            color: white;
+            background-color: grey;
+          }
+        }
+      }
+    }
+  }
+
+
+// --------------------------------------GARBAGE-------------------------------------------
+#delete-notes{
+  background: none;
+  border: none;
+  font-style: italic;
+  &:hover{
+    color: rgb(100, 100, 215);
+  }
+}
+
+
+// ---------------------------------------ANNOUNCEMENT PANEL----------------------------------
+
+.announce_panel{
+  margin-left: 50px;
+  background-color: grey;
+  position: fixed;
+  bottom: 20px ;
+  left: 0;
+  display: none;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  font-size: 20px;
+  button{
+    border: none;
+    background: none;
+    color: orange;
+    &:hover{
+      background-color: rgb(213, 201, 184);
+    }
+  }
+  p{
+    text-align: center;
+    padding-top: 17px;
+  }
+}
+
+#notes-container{
+  height: 40px;
+}
+#noNote{
+  height: 50px;
+  z-index: 9999;
+}
+
+
+//-----------------------------SelectedNotes Navbar--------------------------------------
+
+@mixin create-button-styles(){
+  button{
+    border: none;
+  }
+  button:hover{
+      background-color: rgb(181, 179, 179, 0.4);
+      border-radius: 5px;
+  }
+  button:hover::after{
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -25px;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    color: white;
+    background-color: grey;
+  }
+}
+
+.selectedNotes-navbar{
+  z-index: 1;
+  background-color: rgb(246, 248, 244);
+  width: 100%;
+  position: absolute;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  justify-content: space-between;
+  height: 70px;
+  display: none;
+  & div:nth-child(1){
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    @include create-button-styles();
+
+    & div:nth-child(1){
+      width: 20%;
+    }
+    & div:nth-child(2){
+      width: 80%;
+      display: flex;
+      align-items: center;
+      h3{
+        font-family:'Times New Roman', Times, serif;
+      }
+    }
+  }
+  & div:nth-child(2){
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    & div:nth-child(1){
+      position: relative;
+      width: fit-content;
+      .palette{
+        width: 200px;
+        top: 50px;
+        left: -50px;
+        display: none;
+        padding: 10px;
+        height: auto;
+        position: absolute;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        @mixin palette-button-styles(){
+          border-radius: 50%;
+          width: 30px;
+          height: 30px;
+          margin: 0px 2px 0px 2px;
+          padding: 1px;
+        }
+        button{
+          @include palette-button-styles();
+
+          &:hover{
+            border: 1px solid black !important;
+            @include palette-button-styles();
+          }
+        }
+        & button:nth-child(1){
+          background-color: rgb(255,255,255);
+        }
+        & button:nth-child(2){
+          background-color: rgb(242, 140, 140);
+        }
+        & button:nth-child(3){
+          background-color: rgb(248, 175, 66);
+        }
+        & button:nth-child(4){
+          background-color: rgb(230, 241, 18);
+        }
+        & button:nth-child(5){
+          background-color: rgb(166, 255, 0);
+        }
+        & button:nth-child(6){
+          background-color: rgb(0, 255, 229);
+        }
+        & button:nth-child(7){
+          background-color: rgb(191, 107, 239);
+        }
+        & button:nth-child(8){
+          background-color: rgb(240, 123, 244);
+        }
+        & button:nth-child(9){
+          background-color: rgb(238, 124, 164);
+        }
+      }
+    }
+    @include create-button-styles() 
+
+  }
+}
