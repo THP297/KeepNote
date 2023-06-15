@@ -101,7 +101,7 @@ DATABASES = {
 }
 
 
-CORS_ALLOWED_ORIGINS = [
+CSRF_TRUSTED_ORIGINS = [
     # Other trusted origins
     'https://keepnote-production.up.railway.app',
 ]
