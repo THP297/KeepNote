@@ -5,6 +5,13 @@
         "src": "mykeep/wsgi.py",
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+      },
+      {
+        "src": "build_files.sh",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "staticfiles_build"
+        }
       }
     ],
     "routes": [
@@ -16,15 +23,6 @@
         "src": "/(.*)",
         "dest": "mykeep/wsgi.py"
       }
-    ],
-    "env": {
-      "DJANGO_SETTINGS_MODULE": "mykeep.settings"
-    },
-    "build": {
-      "functions": {
-        "preBuild": { "command": "pip install -r requirements.txt" },
-        "postBuild": { "command": "python manage.py collectstatic --noinput" }
-      }
-    }
+    ]
   }
   
