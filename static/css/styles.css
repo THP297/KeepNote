@@ -251,6 +251,16 @@ label[for=id_image] i {
   border: 5px solid #d5d5d5;
   height: fit-content;
 }
+@media (max-width: 576px) {
+  .form-clone-container .form-clone {
+    width: 90%;
+  }
+}
+@media (max-width: 992px) {
+  .form-clone-container .form-clone {
+    width: 70%;
+  }
+}
 .form-clone-container .form-clone .image-container:hover button {
   display: block;
 }
