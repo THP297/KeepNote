@@ -179,14 +179,14 @@ label[for=id_image] {
     .search-form {
       display: flex;
       align-items: center;
-      width: 60%;
+      width: 100%;
       border-radius: 10px;
     }
 
     .search-form input[type="text"] {
       padding: 10px;
       border: none;
-      width: 100%;
+      width: 90%;
       &:focus{
         outline: none;
       }
@@ -203,11 +203,27 @@ label[for=id_image] {
       }
     }
 
+
     & div:nth-child(1){
+      @media (max-width:992px) {
+        width: 65%;
+      }
+      @media (max-width:768px) {
+        width: 50%;
+      }
       display: flex;
-      width: 90%;
+      width: 70%;
     }
     & div:nth-child(2){
+      @media (max-width:992px) {
+        width: 35%;
+      }
+      @media (max-width:768px) {
+        width: 40%;
+      }
+      @media (max-width:576px) {
+        width: 45%;
+      }
       width: 20%;
       display: flex;
       justify-content: space-between;

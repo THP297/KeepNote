@@ -40,7 +40,6 @@
                   <button data-tooltip="{{ user.username }}">
                     <img id="user_avatar" src="{% if user.is_social %}{{ user.avatar_url }}{% else %}../../media/{{ user.avatar_url }} {% endif %}" alt="#avatar">
                   </button>
-                  
                   <a href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i></a>
                 </div>
               </div>
