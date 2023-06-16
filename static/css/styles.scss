@@ -109,16 +109,10 @@ body{
     box-shadow: none;
   }
   .features{
-    display: flex;
-    justify-content: space-between;
-    input{
-      float: right;
-    }
+
     .form-navbar{
-      width: 75%;
       display: flex;
       justify-content: space-around;
-
       button:hover{
         background-color: rgb(181, 179, 179, 0.4);
         border-radius: 5px;

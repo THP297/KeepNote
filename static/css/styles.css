@@ -96,15 +96,7 @@ body {
   outline: none;
   box-shadow: none;
 }
-.note-content .features {
-  display: flex;
-  justify-content: space-between;
-}
-.note-content .features input {
-  float: right;
-}
 .note-content .features .form-navbar {
-  width: 75%;
   display: flex;
   justify-content: space-around;
 }
