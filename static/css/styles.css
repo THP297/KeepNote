@@ -372,7 +372,9 @@ label[for=id_image] i {
 }
 
 .notes #notes-container {
+  padding: 0;
   margin-bottom: 10px;
+  width: 100%;
 }
 .notes #notes-container .note {
   width: 15%;
@@ -391,12 +393,12 @@ label[for=id_image] i {
 }
 @media screen and (max-width: 992px) {
   .notes #notes-container .note {
-    width: 30%;
+    width: 27%;
   }
 }
 @media screen and (max-width: 576px) {
   .notes #notes-container .note {
-    width: 45%;
+    width: 44%;
   }
 }
 .notes #notes-container .note .selected {
