@@ -1,5 +1,6 @@
 import SetNoteImagesWidth from "./CommonFunc.js";
 import { firstCallback, secondCallback } from "./SelectedNotesNavbar.js";
+
 export default function NoteGesture() {
   $(".note").each(function () {
     $(this).css("background-color", $(this).attr("backgroundColor"));
@@ -11,14 +12,17 @@ export default function NoteGesture() {
   $colorButtons.each(function (index, element) {
     var $thisNote = $(this).parent().parent();
     $(this).on("click", function () {
+      // when user click on the color button then turn of hover event of the note itself
       if (colorButtonClicked == false) {
         $thisNote.off("mouseleave");
         $thisNote.off("mouseenter");
         previousClickedColorButtonId = $(this).parent().parent().attr("value");
+        // set clicked to True
         colorButtonClicked = !colorButtonClicked;
         $(this).find(".palette").css("display", "flex");
       } else {
         if (
+          // if user click the color button of the same note second time then hide the palette
           previousClickedColorButtonId ==
           $(this).parent().parent().attr("value")
         ) {
@@ -28,6 +32,8 @@ export default function NoteGesture() {
           previousClickedColorButtonId = null;
           colorButtonClicked = false;
         } else {
+          /* if user click the color button another note then 
+          hide the previous note palette and display by itself */
           $thisNote.off("mouseleave");
           $thisNote.off("mouseenter");
           var previousClickedColorButton = $(
@@ -51,6 +57,7 @@ export default function NoteGesture() {
     });
   });
 
+  // if palette button is clicked then send a request to change the note background color
   $colorButtons.find(".palette button").each(function () {
     var $note = $(this).parent().parent().parent().parent();
     var noteId = $(this).parent().parent().parent().parent().attr("value");
@@ -90,6 +97,7 @@ export default function NoteGesture() {
     itemSelector: ".note",
   });
 
+  // if image input file change then send request
   $("#note__id_image").on("change", (event) => {
     const NoteId = $(`#${event.target.id}`).parent().parent().attr("value");
     var Data = new FormData();

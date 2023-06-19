@@ -53,6 +53,7 @@ export let handler = function () {
   var title = $noteInfo.find("h5").text();
   var content = $noteInfo.find("p").text();
 
+  //add current title and content of the note
   $formCloneContainer.find(".form-title").val(title);
   var $FormContent = $formCloneContainer.find(".form-textarea");
   $FormContent.val(content);
@@ -60,6 +61,8 @@ export let handler = function () {
   var $formCloneContainImages = $formCloneContainer.find(
     ".form-clone-content-images"
   );
+
+  // add current images of the note
   var $NoteImages = $(this).parent().find("img").clone();
   $NoteImages.appendTo($formCloneContainImages);
   $NoteImages.each(function (index) {
@@ -69,6 +72,7 @@ export let handler = function () {
   $("body").css("position", "relative");
   $("body").append($formCloneContainer);
 
+  // the function below to create a formData to send along with the request
   function setFormData(formData) {
     var $title = $formCloneContainer.find(".form-title").val();
     var $content = $formCloneContainer.find(".form-textarea").val();
@@ -85,7 +89,9 @@ export let handler = function () {
   var $storeBtn = $formCloneContainer.find("#store-btn");
   $storeBtn.on("click", function () {
     var formData = new FormData($(".form-clone")[0]);
+    // set request type
     formData.append("requestType", "type2");
+    // call the setFrom data function above to create formData
     setFormData(formData);
     $.ajax({
       url: "/store/",
@@ -166,6 +172,7 @@ export let handler = function () {
     }
   });
 
+  // add a remove button to each image of formCloneNote
   $(".form-clone-content-images img").each(function (index) {
     var $button = $("<button>", {
       text: "X",
