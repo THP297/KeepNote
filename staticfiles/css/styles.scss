@@ -411,7 +411,9 @@ label[for=id_image] {
 
 .notes{
   #notes-container{
+    padding: 0;
     margin-bottom: 10px;
+    width: 100%;
     .note{
       &:hover{
         box-shadow: 2px 2px 5px 5px rgb(181, 179, 179, 0.7);
@@ -419,8 +421,11 @@ label[for=id_image] {
       @media screen and (max-width: 1200px) {
         width: 20%;
       }
+      @media screen and (max-width: 992px) {
+        width: 27%;
+      }
       @media screen and (max-width: 576px) {
-        width: 40%;
+        width: 44%;
       }
       
       width: 15%;
@@ -590,7 +595,7 @@ label[for=id_image] {
 // ---------------------------------------ANNOUNCEMENT PANEL----------------------------------
 
 .announce_panel{
-  margin-left: 50px;
+  margin-left: 5vw;
   background-color: grey;
   position: fixed;
   bottom: 20px ;
@@ -598,8 +603,8 @@ label[for=id_image] {
   display: none;
   justify-content: space-around;
   align-items: center;
-  width: 400px;
-  font-size: 20px;
+  width: 50vw;
+  font-size: 2vw;
   button{
     border: none;
     background: none;

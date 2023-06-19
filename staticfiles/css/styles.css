@@ -372,7 +372,9 @@ label[for=id_image] i {
 }
 
 .notes #notes-container {
+  padding: 0;
   margin-bottom: 10px;
+  width: 100%;
 }
 .notes #notes-container .note {
   width: 15%;
@@ -389,9 +391,14 @@ label[for=id_image] i {
     width: 20%;
   }
 }
+@media screen and (max-width: 992px) {
+  .notes #notes-container .note {
+    width: 27%;
+  }
+}
 @media screen and (max-width: 576px) {
   .notes #notes-container .note {
-    width: 40%;
+    width: 44%;
   }
 }
 .notes #notes-container .note .selected {
@@ -538,7 +545,7 @@ label[for=id_image] i {
 }
 
 .announce_panel {
-  margin-left: 50px;
+  margin-left: 5vw;
   background-color: grey;
   position: fixed;
   bottom: 20px;
@@ -546,8 +553,8 @@ label[for=id_image] i {
   display: none;
   justify-content: space-around;
   align-items: center;
-  width: 400px;
-  font-size: 20px;
+  width: 50vw;
+  font-size: 2vw;
 }
 .announce_panel button {
   border: none;
