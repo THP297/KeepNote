@@ -582,7 +582,6 @@ label[for=id_image] i {
   display: none;
 }
 .selectedNotes-navbar div:nth-child(1) {
-  width: 30%;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -616,7 +615,6 @@ label[for=id_image] i {
   font-family: "Times New Roman", Times, serif;
 }
 .selectedNotes-navbar div:nth-child(2) {
-  width: 15%;
   display: flex;
   align-items: center;
   justify-content: space-around;
