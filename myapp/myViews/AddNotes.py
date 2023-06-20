@@ -13,11 +13,13 @@ def add_note(request):
         if request.method == 'POST':
             form = NoteForm(request.POST, request.FILES)
             notes = Note.objects.filter(author=request.user,removed=False)
+            form_color = request.POST.get('form-color')
             if form.is_valid():
                 note = form.save(commit=False)
                 images = request.FILES.getlist("images") # getlist to get the files in the input type file with name is "images"
                 if request.user.is_authenticated:
                     note.author = request.user
+                note.background_color = form_color
                 note.save()
                 # Create the NoteImage objects for each image
                 for image in images:

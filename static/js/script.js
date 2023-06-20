@@ -1,5 +1,5 @@
 import NoteGesture from "./NoteGesture.js";
-import NoteFormGesture from "./FormGesture.js";
+import NoteFormGesture, { FormColorButton } from "./FormGesture.js";
 import NoteCloneGesture from "./NoteCloneGesture.js";
 import SideBar from "./SideBar.js";
 import Menu from "./Menu.js";
@@ -12,6 +12,7 @@ import SelectedNotesNavbar, {
 $(document).ready(function () {
   NoteGesture();
   NoteFormGesture();
+  FormColorButton();
   Menu();
   NoteCloneGesture();
   SideBar();

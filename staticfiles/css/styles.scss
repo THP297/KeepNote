@@ -19,7 +19,7 @@ body{
       @media (max-width:576px) {
         font-size: 3vw;
       }
-      margin: 20px;
+      margin: 20px 20px 20px 2px;
       font-size: 1.3vw;
     }
 
@@ -113,11 +113,11 @@ body{
     .form-navbar{
       display: flex;
       justify-content: space-around;
-      button:hover{
+      .form-navbar-button:hover{
         background-color: rgb(181, 179, 179, 0.4);
         border-radius: 5px;
       }
-      button:hover::after,label:hover::after{
+      .form-navbar-button:hover::after,label:hover::after{
         content: attr(data-tooltip);
         position: absolute;
         bottom: -15px;
@@ -126,6 +126,86 @@ body{
         overflow: hidden;
         color: white;
         background-color: grey;
+      }
+    }
+    .color{
+      display: inline-flex;
+      position: relative;
+    }
+
+    .palette{
+      @media (max-width:1200px) {
+        width: 35vw;
+      }
+      @media (max-width:992px) {
+        width: 48vw;
+      }
+      @media (max-width:768px) {
+        width: 52vw;
+      }
+      @media (max-width:576px) {
+        width: 62vw;
+      }
+      display: none;
+      z-index: 1;
+      width: 23vw;
+      top: 50px;
+      left: -50px;
+      padding: 10px;
+      height: auto;
+      position: absolute;
+      background-color: wheat;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+      @mixin palette-button-styles(){
+        @media (max-width:1200px) {
+          width: 3vw;
+            height: 3vw;
+
+        }
+        @media (max-width:992px) {
+          width: 4vw;
+          height: 4vw;
+
+        }
+        border-radius: 50%;
+        width: 2vw;
+        height: 2vw;
+        margin: 0px 2px 0px 2px;
+        padding: 1px;
+      }
+      button{
+        @include palette-button-styles();
+        &:hover{
+          border: 1px solid black !important;
+        }
+      }
+
+      & button:nth-child(1){
+        background-color: rgb(255,255,255);
+      }
+      & button:nth-child(2){
+        background-color: rgb(242, 140, 140);
+      }
+      & button:nth-child(3){
+        background-color: rgb(248, 175, 66);
+      }
+      & button:nth-child(4){
+        background-color: rgb(230, 241, 18);
+      }
+      & button:nth-child(5){
+        background-color: rgb(166, 255, 0);
+      }
+      & button:nth-child(6){
+        background-color: rgb(0, 255, 229);
+      }
+      & button:nth-child(7){
+        background-color: rgb(191, 107, 239);
+      }
+      & button:nth-child(8){
+        background-color: rgb(240, 123, 244);
+      }
+      & button:nth-child(9){
+        background-color: rgb(238, 124, 164);
       }
     }
   }
@@ -171,7 +251,6 @@ label[for=id_image] {
     display: flex;
     align-items: center ;
     justify-content: space-between;
-    
     .clear-input{
       border: none;
     }
@@ -228,6 +307,7 @@ label[for=id_image] {
       display: flex;
       justify-content: space-between;
       button,a{
+        position: relative;
         display: flex;
         align-items: center;
         font-size: 20px;
@@ -247,7 +327,7 @@ label[for=id_image] {
     button:hover::after{
       content: attr(data-tooltip);
       position: absolute;
-      top: 35px;
+      top: 50px;
       font-size: 13px;
       white-space: nowrap;
       overflow: hidden;
@@ -410,6 +490,7 @@ label[for=id_image] {
 
 
 .notes{
+  margin-top: 2vh;
   #notes-container{
     padding: 0;
     margin-bottom: 10px;
@@ -462,6 +543,7 @@ label[for=id_image] {
           padding:15px 5px 5px 15px;
           p,h5{
             word-wrap: break-word;
+            white-space: pre-line
           }
         }
         .note-navbar{
@@ -486,17 +568,16 @@ label[for=id_image] {
             box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
             @mixin palette-button-styles(){
               border-radius: 50%;
-              width: 30px;
-              height: 30px;
+              width: 2vw;
+              height: 2vw;
               margin: 0px 2px 0px 2px;
               padding: 1px;
+              border: none;
             }
             button{
               @include palette-button-styles();
-
               &:hover{
                 border: 1px solid black !important;
-                @include palette-button-styles();
               }
             }
             & button:nth-child(1){
@@ -549,7 +630,7 @@ label[for=id_image] {
             display: flex;
           }
 
-          button {
+          .note-navbar-button{
             i {
               color: black;
               display: block;
@@ -557,15 +638,15 @@ label[for=id_image] {
               height: 100%;
             }
           }
-          button,form {
+          .note-navbar-button,form {
             border: none;
             background: none;
           }
-          button:hover{
+          .note-navbar-button:hover{
               background-color: rgb(181, 179, 179, 0.4);
               border-radius: 5px;
           }
-          button:hover::after, form:hover::after,label:hover::after{
+          .note-navbar-button:hover::after, form:hover::after,label:hover::after{
             content: attr(data-tooltip);
             position: absolute;
             bottom: -25px;

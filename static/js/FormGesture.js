@@ -3,6 +3,8 @@ import SetNoteImagesWidth, {
   backFormStyles,
 } from "./CommonFunc.js";
 
+var formColorButtonClicked = false;
+export let formColor = null;
 export default function NoteFormGesture() {
   // this script to set the textarea height to be flex based on the height of the user input in the form
   $("#id_content").on("input", function () {
@@ -83,7 +85,6 @@ export default function NoteFormGesture() {
 
   // submit when clicked anywhere outside of note-content
   $(document).click(function (event) {
-    var targetClassName = event.target.className;
     /* if click outside the note and do not click on the remove image button
      then submit the form */
     if ($(event.target).is("body")) {
@@ -97,6 +98,8 @@ export default function NoteFormGesture() {
         $(".note-form").submit();
       } // else just hide the note elements to the beginning
       else {
+        $("#form-color-button .palette").css("display", "none");
+        formColorButtonClicked = false;
         backFormStyles();
       }
     }
@@ -155,5 +158,34 @@ export default function NoteFormGesture() {
     setImageFiles(total_files, inputId);
     /* Set the width of css of each images to be displayed flexible */
     SetNoteImagesWidth($(".note-content-images"), ".image-container");
+  });
+}
+
+export function FormColorButton() {
+  $("#form-color-button :first-child").on("click", function () {
+    console.log("ok");
+    // when user click on the color button then turn of hover event of the note itself
+    if (formColorButtonClicked == false) {
+      formColorButtonClicked = !formColorButtonClicked;
+      $("#form-color-button .palette").css("display", "block");
+    } else {
+      $("#form-color-button .palette").css("display", "none");
+      formColorButtonClicked = false;
+    }
+  });
+
+  $("#form-color-button .palette button").on("click", function () {
+    //set form background color when user click on a palette button
+    formColor = $(this).attr("value");
+    $("#form-color").val(formColor);
+    $(".note-content").css("background-color", formColor);
+    $(".note-content").find(".note-title").css("background-color", formColor);
+    $(".note-content")
+      .find(".note-textarea")
+      .css("background-color", formColor);
+    $(".note-content")
+      .find("button[data-tooltip]")
+      .css("background-color", formColor);
+    console.log(formColor);
   });
 }

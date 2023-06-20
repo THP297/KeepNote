@@ -49,6 +49,11 @@ function backFormStyles() {
     "2px 2px 5px rgba(150, 147, 147, 0.5), -2px -2px 5px rgba(150, 147, 147, 0.5), -2px 2px 5px rgba(150, 147, 147, 0.5)"
   );
   $(".note-content ").css("box-shadow", "none");
+
+  $(".form-navbar-button").css("background-color", "transparent");
+  $(".note-content").css("background-color", "white");
+  $(".note-content").find(".note-title").css("background-color", "white");
+  $(".note-content").find(".note-textarea").css("background-color", "white");
 }
 
 //Remove the notes on the UI after successfully solve request and make change in the database

@@ -11,7 +11,7 @@ class NoteForm(forms.ModelForm):
         fields = ('title', 'content')
         widgets = {
             'title': forms.TextInput(attrs={'class': 'note-title',"placeholder":"Tiêu đề"}),
-            'content': forms.Textarea(attrs={'rows': "auto" ,"placeholder":"Tạo ghi chú"}),
+            'content': forms.Textarea(attrs={'class':'note-textarea','rows': "auto" ,"placeholder":"Tạo ghi chú"}),
         }
         labels = {
             'title': 'Tiêu đề',
