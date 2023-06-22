@@ -1,7 +1,7 @@
 import { handler } from "./NoteCloneGesture.js";
 import { SelectedNotesNavbarSuccess } from "./CommonFunc.js";
-export let selectedNotes = [];
-export let notesToDelete = [];
+var selectedNotes = [];
+var notesToDelete = [];
 
 // these two callback function below used for handle the note-navbar and the note select button
 export let firstCallback = function () {
@@ -75,7 +75,17 @@ export default function SelectedNotesNavbar() {
           "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val(),
         },
         success: function (response) {
-          SelectedNotesNavbarSuccess($rootSelectedNotesNavbar, announceTypeId);
+          selectedNotes.forEach(function (element, index) {
+            var note = $('.note[value="' + element + '"]');
+            notesToDelete.push(note);
+          });
+          SelectedNotesNavbarSuccess(
+            $rootSelectedNotesNavbar,
+            announceTypeId,
+            notesToDelete,
+            selectedNotes
+          );
+          notesToDelete = [];
         },
         error: function (error) {
           console.log(error);
@@ -133,7 +143,6 @@ export default function SelectedNotesNavbar() {
   // Handle function when user want to select multiple notes
   $(".selected").on("click", function () {
     var $thisNote = $(this).parent(); // get the note just be clicked
-    notesToDelete.push($thisNote); // add note to the list to remove later
     var $noteId = $(this).parent().attr("value"); // get the id of the note
     var selected = $(this).attr("value") === "true";
     selected = !selected; // set to True because then note just be clicked
@@ -146,6 +155,7 @@ export default function SelectedNotesNavbar() {
     } else {
       // if false that's mean user click the selected button again then we remove this note from the selected list
       selectedNotes = selectedNotes.filter((note) => note !== $noteId);
+      console.log(selectedNotes);
       $(this).find("button").css("background-color", "white");
       $(this).find("i").css("color", "black");
     }
@@ -201,8 +211,18 @@ export function removeNotesNavbar() {
           "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val(),
         },
         success: function (response) {
+          selectedNotes.forEach(function (element, index) {
+            var note = $('.note[value="' + element + '"]');
+            notesToDelete.push(note);
+          });
           //function to solve after successfully send request
-          SelectedNotesNavbarSuccess($removeNotesNavbar, announceTypeId);
+          SelectedNotesNavbarSuccess(
+            $removeNotesNavbar,
+            announceTypeId,
+            notesToDelete,
+            selectedNotes
+          );
+          notesToDelete = [];
         },
         error: function (error) {
           console.log(error);

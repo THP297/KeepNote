@@ -1,4 +1,3 @@
-import { selectedNotes, notesToDelete } from "./SelectedNotesNavbar.js";
 /* This function to set the images width when user choose in the form 
 and also used for setting the note images width */
 export default function SetNoteImagesWidth(ImageContainer, Children) {
@@ -57,7 +56,13 @@ function backFormStyles() {
 }
 
 //Remove the notes on the UI after successfully solve request and make change in the database
-function SelectedNotesNavbarSuccess(navbar, announceTypeId) {
+function SelectedNotesNavbarSuccess(
+  navbar,
+  announceTypeId,
+  notesToDelete,
+  selectedNotes
+) {
+  console.log(notesToDelete);
   for (let i = 0; i < notesToDelete.length; i++) {
     notesToDelete[i].remove();
   }
@@ -68,7 +73,7 @@ function SelectedNotesNavbarSuccess(navbar, announceTypeId) {
   });
   // set the amount of selected notes to the announce panel
   var $amountOfNotes = $(announceTypeId).find("span");
-  $amountOfNotes.text(notesToDelete.length);
+  $amountOfNotes.text(selectedNotes.length);
   $amountOfNotes.css("color", "red");
   //remove selected notes
   selectedNotes.length = 0;
