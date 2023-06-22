@@ -51,63 +51,6 @@ export default function SelectedNotesNavbar() {
     }
   });
 
-  /* two line of codes below are getting the two button in the garbage template */
-  var $removeBtn = $rootSelectedNotesNavbar.find(".selectedNotes-removeBtn");
-  var $storeBtn = $rootSelectedNotesNavbar.find(".selectedNotes-storeBtn");
-  function SelectedNotesNavbarHandler(
-    $buttonType,
-    url,
-    requestMethod,
-    requestType,
-    announceTypeId
-  ) {
-    $buttonType.on("click", function () {
-      $.ajax({
-        url: url,
-        type: requestMethod,
-        data: JSON.stringify({
-          selectedNotes: selectedNotes,
-          type: requestType,
-        }),
-        processData: false,
-        contentType: false,
-        headers: {
-          "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val(),
-        },
-        success: function (response) {
-          selectedNotes.forEach(function (element, index) {
-            var note = $('.note[value="' + element + '"]');
-            notesToDelete.push(note);
-          });
-          SelectedNotesNavbarSuccess(
-            $rootSelectedNotesNavbar,
-            announceTypeId,
-            notesToDelete,
-            selectedNotes
-          );
-          notesToDelete = [];
-        },
-        error: function (error) {
-          console.log(error);
-        },
-      });
-    });
-  }
-  SelectedNotesNavbarHandler(
-    $removeBtn,
-    "/garbage/",
-    "DELETE",
-    "type2",
-    "#notes_removed"
-  );
-  SelectedNotesNavbarHandler(
-    $storeBtn,
-    "/store/",
-    "POST",
-    "type3",
-    "#notes_stored"
-  );
-
   // send request when a button in palette be clicked
   $rootSelectedNotesNavbar.find(".palette button").each(function () {
     var backgroundColor = $(this).attr("value");
@@ -182,8 +125,65 @@ export default function SelectedNotesNavbar() {
       console.log("ok");
     }
   });
-}
 
+  /* two line of codes below are getting the two button in the garbage template */
+  var $removeBtn = $rootSelectedNotesNavbar.find(".selectedNotes-removeBtn");
+  var $storeBtn = $rootSelectedNotesNavbar.find(".selectedNotes-storeBtn");
+  function SelectedNotesNavbarHandler(
+    $buttonType,
+    url,
+    requestMethod,
+    requestType,
+    announceTypeId
+  ) {
+    $buttonType.on("click", function () {
+      $.ajax({
+        url: url,
+        type: requestMethod,
+        data: JSON.stringify({
+          selectedNotes: selectedNotes,
+          type: requestType,
+        }),
+        processData: false,
+        contentType: false,
+        headers: {
+          "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val(),
+        },
+        success: function (response) {
+          // filter notes to delete on the UI
+          selectedNotes.forEach(function (element, index) {
+            var note = $('.note[value="' + element + '"]');
+            notesToDelete.push(note);
+          });
+          SelectedNotesNavbarSuccess(
+            $rootSelectedNotesNavbar,
+            announceTypeId,
+            notesToDelete,
+            selectedNotes
+          );
+          notesToDelete = [];
+        },
+        error: function (error) {
+          console.log(error);
+        },
+      });
+    });
+  }
+  SelectedNotesNavbarHandler(
+    $removeBtn,
+    "/garbage/",
+    "DELETE",
+    "type2",
+    "#notes_removed"
+  );
+  SelectedNotesNavbarHandler(
+    $storeBtn,
+    "/store/",
+    "POST",
+    "type3",
+    "#notes_stored"
+  );
+}
 // The below function for selectedNavbar but in the garbage template
 export function removeNotesNavbar() {
   var $removeNotesNavbar = $("#removeNotes-navbar");
@@ -211,6 +211,7 @@ export function removeNotesNavbar() {
           "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val(),
         },
         success: function (response) {
+          // filter notes to delete on the UI
           selectedNotes.forEach(function (element, index) {
             var note = $('.note[value="' + element + '"]');
             notesToDelete.push(note);
