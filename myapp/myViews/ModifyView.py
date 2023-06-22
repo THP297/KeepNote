@@ -32,8 +32,10 @@ def modify(request):
         
         elif request.POST.get("requestType") == 'type2':
             noteId = request.POST.get("id")
+            print(noteId)
             newImages = request.FILES.getlist('Images')
             note = Note.objects.get(id=noteId)
+            print(newImages)
             for image in newImages:
                     note_image = NoteImage(note=note, image=image)
                     note_image.save()

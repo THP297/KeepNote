@@ -98,19 +98,17 @@ export default function NoteGesture() {
   });
 
   // if image input file change then send request
-  $("#note__id_image").on("change", (event) => {
+  $(".note__id_image").on("change", (event) => {
     const NoteId = $(`#${event.target.id}`).parent().parent().attr("value");
+    console.log(NoteId);
     var Data = new FormData();
-    var $Images = $("#note__id_image")[0].files;
+    var $Images = $(`#${event.target.id}`)[0].files;
     for (var i = 0; i < $Images.length; i++) {
       Data.append("Images", $Images[i]);
     }
     Data.append("id", NoteId);
     Data.append("requestType", "type2");
 
-    for (var pair of Data.entries()) {
-      console.log(pair[0] + ":", pair[1]);
-    }
     var current_url = window.location.href; //get the current url to keep staying after request successfully
 
     $.ajax({
@@ -124,8 +122,7 @@ export default function NoteGesture() {
       },
       success: function (response) {
         window.location.href = current_url;
-        console.log(response.success);
-        console.log(response.id);
+        console.log(response.Images);
       },
       error: function (error) {
         console.log(error);

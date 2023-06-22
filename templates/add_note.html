@@ -92,8 +92,8 @@
       <button class="color-9" value="rgb(238, 124, 164)"></button>
     </div>
   </div>
-  <label for="note__id_image" class="btn btn-secondary btn-icon custom-file-upload" data-tooltip="Thêm ảnh"><i class="bi bi-image"></i></label>
-  <input type="file" name="images" multiple id="note__id_image" class="d-none" />
+  <label for="note__{{ note.id }}_image" class="btn btn-secondary btn-icon custom-file-upload" data-tooltip="Thêm ảnh"><i class="bi bi-image"></i></label>
+  <input type="file" name="images" multiple id="note__{{ note.id }}_image" class="d-none note__id_image" />
 
   <form method="POST" action="{% url 'store' %}" data-tooltip="Lưu trữ">
     {% csrf_token %}
