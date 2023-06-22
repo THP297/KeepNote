@@ -32,9 +32,9 @@
 {% endblock %} 
 {% block note-navbar %} 
 <div class="note-navbar">
-  <button data-tooltip="Thông báo"><i class="bi bi-bell"></i></button>
+  <button class="note-navbar-button" data-tooltip="Thông báo"><i class="bi bi-bell"></i></button>
   <div class="color">
-    <button data-tooltip="Chọn màu nền"><i class="bi bi-palette"></i></button>
+    <button class="note-navbar-button" data-tooltip="Chọn màu nền"><i class="bi bi-palette"></i></button>
     <div class="palette">
       <button class="color-1" value="rgb(255,255,255)">X</button>
       <button class="color-2" value="rgb(242, 140, 140)"></button>
@@ -53,7 +53,7 @@
   <form method="POST" action="{% url 'store' %}" data-tooltip="Hủy lưu trữ">
     {% csrf_token %}
     <input type="hidden" name="note_id" value="{{ note.id }}" >
-    <button type="submit"><i class="bi bi-calendar-x-fill"></i></button>
+    <button class="note-navbar-button" type="submit"><i class="bi bi-calendar-x-fill"></i></button>
     <input type="hidden" name="current_url" class="current_url">
   </form>
   
@@ -61,7 +61,7 @@
     {% csrf_token %}
     <input type="hidden" name="note_id" value="{{ note.id }}" >
     <input type="hidden" name="current_url" class="current_url">
-    <button type="submit"><i class="bi bi-trash"></i></button>
+    <button class="note-navbar-button" type="submit"><i class="bi bi-trash"></i></button>
   </form>
 </div>
 {% endblock %}

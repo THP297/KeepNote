@@ -42,10 +42,10 @@
     {% csrf_token %}
     <input type="hidden" name="note_id" value="{{ note.id }}" >
     <input type="hidden" name="current_url" class="current_url">
-    <button type="submit"><i class="bi bi-arrow-counterclockwise"></i></button>
+    <button class="note-navbar-button" type="submit"><i class="bi bi-arrow-counterclockwise"></i></button>
   </form>
 </form>
-<button name="only" id="delete-note" data-note-id="{{ note.id }}" type="button"><i class="bi bi-trash"></i></button>
+<button class="note-navbar-button" name="only" id="delete-note" data-note-id="{{ note.id }}" type="button"><i class="bi bi-trash"></i></button>
 </div>
 {% endblock %}
 
