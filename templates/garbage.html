@@ -8,7 +8,7 @@
 <div class="row selectedNotes-navbar" id="removeNotes-navbar">
   <div class="col-xl-4 col-md-5 col-sm-5 col-7">
     <div><button class="turnOff">X</button></div>
-    <div><h3><span>1</span> ghi chú được chọn</h3></div>
+    <div><h3><span>1</span> notes selected</h3></div>
   </div>
   <div class="col-xl-3 col-md-3 col-sm-4 col-5">
     <div class="color">
@@ -25,20 +25,20 @@
         <button class="color-9" value="rgb(238, 124, 164)"></button>
       </div>
     </div>
-    <button class="selectedNotes-recoverBtn" data-tooltip="Khôi phục"><i class="bi bi-arrow-counterclockwise"></i></i></button>
-    <button class="selectedNotes-deleteBtn" data-tooltip="Xóa"><i class="bi bi-trash"></i></button>
+    <button class="selectedNotes-recoverBtn" data-tooltip="Restore"><i class="bi bi-arrow-counterclockwise"></i></i></button>
+    <button class="selectedNotes-deleteBtn" data-tooltip="Remove"><i class="bi bi-trash"></i></button>
   </div>
 </div>
 {% endblock %} 
 
 {% block form-navbar %} 
-<p style="font-style: italic; color: rgb(177, 174, 174); text-align: center;">Ghi chú trong thùng rác sẽ bị xóa sau 7 ngày 
-<button id="delete-notes" name="all">Dọn sạch thùng rác</button></p>
+<p style="font-style: italic; color: rgb(177, 174, 174); text-align: center;">Notes in the trash will be deleted after 7 days 
+<button id="delete-notes" name="all">Empty the garbage</button></p>
 {% endblock %}
 
 {% block note-navbar %} 
 <div class="note-navbar">
-  <form method="POST" action="{% url 'garbage' %}" data-tooltip="Khôi phục">
+  <form method="POST" action="{% url 'garbage' %}" data-tooltip="Restore">
     {% csrf_token %}
     <input type="hidden" name="note_id" value="{{ note.id }}" >
     <input type="hidden" name="current_url" class="current_url">
@@ -53,23 +53,23 @@
 {% block announce_panel %} 
 
 <div class="announce_panel" id="removed">
-  <p>Đã khôi phục ghi chú</p>
+  <p>Notes restored</p>
   <button>X</button>
 </div>
 
 
 <div class="announce_panel" id="notes_deleted">
-  <p>Đã xóa <span></span> ghi chú</p>
+  <p>Removed <span></span> notes</p>
   <button>X</button>
 </div>
 
 <div class="announce_panel" id="notes_recovered">
-  <p>Đã khôi phục <span></span> ghi chú</p>
+  <p>Restored <span></span> notes</p>
   <button>X</button>
 </div>
 
 <div class="announce_panel" id="delete">
-  <p>Đã xóa ghi chú</p>
+  <p>Removed note</p>
   <button>X</button>
 </div>
 {% endblock %} 

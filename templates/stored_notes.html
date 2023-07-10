@@ -8,7 +8,7 @@
 <div class="row selectedNotes-navbar">
   <div class="col-xl-4 col-md-5 col-sm-5 col-7">
     <div><button class="turnOff">X</button></div>
-    <div><h3><span>1</span> ghi chú được chọn</h3></div>
+    <div><h3><span>1</span> notes selected</h3></div>
   </div>
   <div class="col-xl-3 col-md-3 col-sm-4 col-5">
     <div class="color">
@@ -25,16 +25,16 @@
         <button class="color-9" value="rgb(238, 124, 164)"></button>
       </div>
     </div>
-    <button class="selectedNotes-storeBtn" data-tooltip="Lưu trữ"><i class="bi bi-calendar-x-fill"></i></button>
-    <button class="selectedNotes-removeBtn" data-tooltip="Xóa"><i class="bi bi-trash"></i></button>
+    <button class="selectedNotes-storeBtn" data-tooltip="Important"><i class="bi bi-calendar-x-fill"></i></button>
+    <button class="selectedNotes-removeBtn" data-tooltip="Remove"><i class="bi bi-trash"></i></button>
   </div>
 </div>
 {% endblock %} 
 {% block note-navbar %} 
 <div class="note-navbar">
-  <button class="note-navbar-button" data-tooltip="Thông báo"><i class="bi bi-bell"></i></button>
+  <button class="note-navbar-button" data-tooltip="Notification"><i class="bi bi-bell"></i></button>
   <div class="color">
-    <button class="note-navbar-button" data-tooltip="Chọn màu nền"><i class="bi bi-palette"></i></button>
+    <button class="note-navbar-button" data-tooltip="Background Color"><i class="bi bi-palette"></i></button>
     <div class="palette">
       <button class="color-1" value="rgb(255,255,255)">X</button>
       <button class="color-2" value="rgb(242, 140, 140)"></button>
@@ -47,17 +47,17 @@
       <button class="color-9" value="rgb(238, 124, 164)"></button>
     </div>
   </div>
-  <label for="note__id_image" class="btn btn-secondary btn-icon custom-file-upload" data-tooltip="Thêm ảnh"><i class="bi bi-image"></i></label>
+  <label for="note__id_image" class="btn btn-secondary btn-icon custom-file-upload" data-tooltip="Add images"><i class="bi bi-image"></i></label>
   <input type="file" name="images" multiple id="note__id_image" class="d-none" />
 
-  <form method="POST" action="{% url 'store' %}" data-tooltip="Hủy lưu trữ">
+  <form method="POST" action="{% url 'store' %}" data-tooltip="Unimportant">
     {% csrf_token %}
     <input type="hidden" name="note_id" value="{{ note.id }}" >
     <button class="note-navbar-button" type="submit"><i class="bi bi-calendar-x-fill"></i></button>
     <input type="hidden" name="current_url" class="current_url">
   </form>
   
-  <form method="POST" action="{% url 'garbage' %}" data-tooltip="Xóa">
+  <form method="POST" action="{% url 'garbage' %}" data-tooltip="Remove">
     {% csrf_token %}
     <input type="hidden" name="note_id" value="{{ note.id }}" >
     <input type="hidden" name="current_url" class="current_url">
@@ -69,22 +69,22 @@
 {% block announce_panel %} 
 
 <div class="announce_panel" id="stored">
-  <p>Đã hủy lưu trữ ghi chú</p>
+  <p>Unarchived note</p>
   <button>X</button>
 </div>
 
 <div class="announce_panel" id="removed">
-  <p>Đã chuyển ghi chú vào thùng rác</p>
+  <p>Moved note to garbage</p>
   <button>X</button>
 </div>
 
 <div class="announce_panel" id="notes_removed">
-  <p>Đã chuyển <span></span> ghi chú vào thùng rác</p>
+  <p>Moved <span></span> notes to garbage</p>
   <button>X</button>
 </div>
 
 <div class="announce_panel" id="notes_stored">
-  <p>Đã hủy lưu trữ <span></span> ghi chú </p>
+  <p>Unimportant <span></span> notes </p>
   <button>X</button>
 </div>
 {% endblock %} 

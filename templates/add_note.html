@@ -8,11 +8,11 @@
 <div class="row selectedNotes-navbar">
   <div class="col-xl-4 col-md-5 col-sm-5 col-7">
     <div><button class="turnOff">X</button></div>
-    <div><h3><span>1</span> ghi chú được chọn</h3></div>
+    <div><h3><span>1</span> notes selected</h3></div>
   </div>
   <div class="col-xl-3 col-md-3 col-sm-4 col-5">
     <div class="color">
-      <button data-tooltip="Chọn màu nền"><i class="bi bi-palette"></i></button>
+      <button data-tooltip="Background Color"><i class="bi bi-palette"></i></button>
       <div class="palette">
         <button class="color-1" value="rgb(255,255,255)">X</button>
         <button class="color-2" value="rgb(242, 140, 140)"></button>
@@ -25,8 +25,8 @@
         <button class="color-9" value="rgb(238, 124, 164)"></button>
       </div>
     </div>
-    <button class="selectedNotes-storeBtn" data-tooltip="Lưu trữ"><i class="bi bi-box-arrow-down"></i></button>
-    <button class="selectedNotes-removeBtn" data-tooltip="Xóa"><i class="bi bi-trash"></i></button>
+    <button class="selectedNotes-storeBtn" data-tooltip="Important"><i class="bi bi-box-arrow-down"></i></button>
+    <button class="selectedNotes-removeBtn" data-tooltip="Remove"><i class="bi bi-trash"></i></button>
   </div>
 </div>
 {% endblock %}    
@@ -47,10 +47,10 @@
             </div>
             <div class="row features">
               <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12 form-navbar">
-                <button class="form-navbar-button" type="button" data-tooltip="Thông báo"><i class="bi bi-bell"></i></button>
+                <button class="form-navbar-button" type="button" data-tooltip="Notification"><i class="bi bi-bell"></i></button>
                 <div class="color" id="form-color-button">
                   <input  id="form-color" name="form-color" class="d-none" />
-                  <button class="form-navbar-button" type="button" data-tooltip="Chọn màu nền"><i class="bi bi-palette"></i></button>
+                  <button class="form-navbar-button" type="button" data-tooltip="Background Color"><i class="bi bi-palette"></i></button>
                   <div class="palette">
                     <button type="button" class="color-1" value="rgb(255,255,255)"></button>
                     <button type="button" class="color-2" value="rgb(242, 140, 140)"></button>
@@ -63,11 +63,11 @@
                     <button type="button" class="color-9" value="rgb(238, 124, 164)"></button>
                   </div>
                 </div>
-                  <label for="id_image" class="btn btn-secondary btn-icon custom-file-upload" data-tooltip="Thêm ảnh"><i class="bi bi-image"></i></label>
+                  <label for="id_image" class="btn btn-secondary btn-icon custom-file-upload" data-tooltip="Add images"><i class="bi bi-image"></i></label>
                   <input type="file" name="images" multiple id="id_image" class="d-none" />
                 <button class="form-navbar-button" data-tooltip="Lưu trữ" type="button" id="store-btn"><i class="bi bi-box-arrow-down"></i></button>
               </div>
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 text-center"><input type="submit" value="Thêm" class="btn btn-primary custom-submit"></div>
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 text-center"><input type="submit" value="Add" class="btn btn-primary custom-submit"></div>
             </div>
         </div>
     </form>
@@ -77,9 +77,9 @@
 
 {% block note-navbar %} 
 <div class="note-navbar">
-  <button class="note-navbar-button" data-tooltip="Thông báo"><i class="bi bi-bell"></i></button>
+  <button class="note-navbar-button" data-tooltip="Notification"><i class="bi bi-bell"></i></button>
   <div class="color">
-    <button class="note-navbar-button" data-tooltip="Chọn màu nền"><i class="bi bi-palette"></i></button>
+    <button class="note-navbar-button" data-tooltip="Background Color"><i class="bi bi-palette"></i></button>
     <div class="palette">
       <button class="color-1" value="rgb(255,255,255)"></button>
       <button class="color-2" value="rgb(242, 140, 140)"></button>
@@ -92,17 +92,17 @@
       <button class="color-9" value="rgb(238, 124, 164)"></button>
     </div>
   </div>
-  <label for="note__{{ note.id }}_image" class="btn btn-secondary btn-icon custom-file-upload" data-tooltip="Thêm ảnh"><i class="bi bi-image"></i></label>
+  <label for="note__{{ note.id }}_image" class="btn btn-secondary btn-icon custom-file-upload" data-tooltip="Add images"><i class="bi bi-image"></i></label>
   <input type="file" name="images" multiple id="note__{{ note.id }}_image" class="d-none note__id_image" />
 
-  <form method="POST" action="{% url 'store' %}" data-tooltip="Lưu trữ">
+  <form method="POST" action="{% url 'store' %}" data-tooltip="Important">
     {% csrf_token %}
     <input type="hidden" name="note_id" value="{{ note.id }}" >
     <button class="note-navbar-button" type="submit"><i class="bi bi-box-arrow-down"></i></button>
     <input type="hidden" name="current_url" class="current_url">
   </form>
   
-  <form method="POST" action="{% url 'garbage' %}" data-tooltip="Xóa">
+  <form method="POST" action="{% url 'garbage' %}" data-tooltip="Remove">
     {% csrf_token %}
     <input type="hidden" name="note_id" value="{{ note.id }}" >
     <input type="hidden" name="current_url" class="current_url">
@@ -115,27 +115,27 @@
 
 {% block announce_panel %}
   <div class="announce_panel" id="stored">
-    <p>Đã lưu trữ ghi chú</p>
+    <p>Archived notes</p>
     <button>X</button>
   </div>
 
   <div class="announce_panel" id="removed">
-    <p>Đã chuyển ghi chú vào thùng rác</p>
+    <p>Moved note to garbage</p>
     <button>X</button>
   </div>
 
   <div class="announce_panel" id="notes_removed">
-    <p>Đã chuyển <span></span> ghi chú vào thùng rác</p>
+    <p>Moved <span></span> notes to garbage</p>
     <button>X</button>
   </div>
 
   <div class="announce_panel" id="notes_stored">
-    <p>Đã lưu trữ <span></span> ghi chú </p>
+    <p>Moved <span></span> notes </p>
     <button>X</button>
   </div>
 
   <div class="announce_panel" id="back">
-    <p>Đã hoàn tác tác vụ</p>
+    <p>Task undone</p>
   </div>
 {% endblock %} 
 
