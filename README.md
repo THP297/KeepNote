@@ -24,10 +24,9 @@ The project uses SQLite as its database, as indicated by the `db.sqlite3` file.
 ## Installation
 To install the project, you can use pip and the provided `requirements.txt` file:
 
-```bash
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 Then, you can run the Django project with the provided manage.py script:
 
-python manage.py runserver
+`python manage.py runserver`
 
